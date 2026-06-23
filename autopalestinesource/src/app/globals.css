@@ -1,0 +1,260 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* Dark mode driven by a `.dark` class on <html> (next-themes, attribute="class"). */
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   Horizon Auto — Design Tokens (raw values)
+   Brand: Deep Navy #0B192C (structure) + Professional Orange #FF6500 (action)
+   ============================================================ */
+
+:root {
+  /* --- Semantic surface / text --- */
+  --background: #f5f7fa;
+  --foreground: #191c1e;
+  --card: #ffffff;
+  --card-foreground: #191c1e;
+  --popover: #ffffff;
+  --popover-foreground: #191c1e;
+
+  /* --- Action / brand semantics ---
+     `primary`   = orange CTA (design "Primary button")
+     `secondary` = navy (design "Secondary button" / structural) */
+  --primary: #ff6500;
+  --primary-foreground: #ffffff;
+  --secondary: #0b192c;
+  --secondary-foreground: #ffffff;
+
+  --muted: #eceef1;
+  --muted-foreground: #44474c;
+  --accent: #f2f4f7;
+  --accent-foreground: #0b192c;
+  --destructive: #ba1a1a;
+  --destructive-foreground: #ffffff;
+
+  /* --- Borders / inputs / focus --- */
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #ff6500;
+
+  /* --- Explicit brand tokens --- */
+  --brand-navy: #0b192c;
+  --brand-navy-foreground: #ffffff;
+  --brand-orange: #ff6500;
+  --brand-orange-foreground: #ffffff;
+
+  /* --- Status (chips) --- */
+  --success: #16794a;
+  --success-foreground: #ffffff;
+  --warning: #a33e00;
+  --warning-foreground: #ffffff;
+
+  /* --- Tonal surface ladder --- */
+  --surface: #f7f9fc;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f2f4f7;
+  --surface-container: #eceef1;
+  --surface-container-high: #e6e8eb;
+  --surface-container-highest: #e0e3e6;
+
+  /* --- Radius scale --- */
+  --radius: 0.5rem; /* default — buttons, inputs (8px) */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem; /* cards (16px) */
+  --radius-xl: 1.5rem;
+
+  /* --- Elevation (tonal, low-diffusion) --- */
+  --shadow-card: 0 4px 20px rgba(11, 25, 44, 0.05);
+  --shadow-modal: 0 12px 32px rgba(11, 25, 44, 0.12);
+
+  /* --- Layout rhythm --- */
+  --gutter: 24px;
+  --margin-mobile: 16px;
+  --margin-desktop: 64px;
+  --content-max: 1280px;
+}
+
+.dark {
+  --background: #0b192c;
+  --foreground: #eff1f4;
+  --card: #1e2a3b;
+  --card-foreground: #eff1f4;
+  --popover: #1e2a3b;
+  --popover-foreground: #eff1f4;
+
+  --primary: #ff6500;
+  --primary-foreground: #ffffff;
+  --secondary: #1e2a3b;
+  --secondary-foreground: #eff1f4;
+
+  --muted: #1e2a3b;
+  --muted-foreground: #aeb4bd;
+  --accent: #24344a;
+  --accent-foreground: #eff1f4;
+  --destructive: #ffb4ab;
+  --destructive-foreground: #690005;
+
+  --border: #2d3a4d;
+  --input: #2d3a4d;
+  --ring: #ff6500;
+
+  --brand-navy: #0b192c;
+  --brand-navy-foreground: #ffffff;
+  --brand-orange: #ff6500;
+  --brand-orange-foreground: #ffffff;
+
+  --success: #6ee7a8;
+  --success-foreground: #06351e;
+  --warning: #ffb596;
+  --warning-foreground: #551c00;
+
+  --surface: #0b192c;
+  --surface-container-lowest: #08121f;
+  --surface-container-low: #16212f;
+  --surface-container: #1e2a3b;
+  --surface-container-high: #243246;
+  --surface-container-highest: #2d3a4d;
+
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-modal: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   Tailwind theme mapping (v4 CSS-first)
+   ============================================================ */
+
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-foreground: var(--brand-navy-foreground);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-foreground: var(--brand-orange-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --color-surface: var(--surface);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+
+  /* Font family */
+  --font-sans:
+    'IBM Plex Sans Arabic', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    sans-serif;
+
+  /* Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* Elevation */
+  --shadow-card: var(--shadow-card);
+  --shadow-modal: var(--shadow-modal);
+
+  /* Content container → max-w-content */
+  --container-content: 80rem;
+
+  /* Typography scale (size / line-height / weight) */
+  --text-headline-xl: 2.5rem;
+  --text-headline-xl--line-height: 3.25rem;
+  --text-headline-xl--font-weight: 700;
+
+  --text-headline-lg: 2rem;
+  --text-headline-lg--line-height: 2.5rem;
+  --text-headline-lg--font-weight: 700;
+
+  --text-headline-lg-mobile: 1.75rem;
+  --text-headline-lg-mobile--line-height: 2.25rem;
+  --text-headline-lg-mobile--font-weight: 700;
+
+  --text-headline-md: 1.5rem;
+  --text-headline-md--line-height: 2rem;
+  --text-headline-md--font-weight: 600;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75rem;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-md--font-weight: 400;
+
+  --text-label-md: 0.875rem;
+  --text-label-md--line-height: 1.25rem;
+  --text-label-md--font-weight: 500;
+}
+
+/* ============================================================
+   Base layer
+   ============================================================ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+/* ============================================================
+   Component animations (Radix-driven)
+   ============================================================ */
+
+@theme {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
